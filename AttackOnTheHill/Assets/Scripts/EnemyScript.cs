@@ -12,7 +12,7 @@ public class EnemyScript : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("PlayerController");
-        
+       
     }
 
     // Update is called once per frame

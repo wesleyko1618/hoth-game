@@ -16,15 +16,18 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+    public Animator blasterAnim;
+
 
     Vector3 velocity;
     public Vector3 currentAngle;
 
     bool isGrounded;
+    float blastTime;
     private void Start()
     {
-       // playerRb = GetComponent<Rigidbody>();
-       // controller = gameObject.GetComponent<CharacterController>();
+        // playerRb = GetComponent<Rigidbody>();
+        blastTime = Time.deltaTime;
     }
 
 
@@ -52,9 +55,20 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
 
         }
+        if(Input.GetKeyDown(KeyCode.B) && blastTime > 0.25)
+        {
+            blasterAnim.SetBool("Blast", true);
+            blastTime = 0;
+        }
+        if (blastTime > 0.5)
+        {
+            blasterAnim.SetBool("Blast", false);
+        }
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+
+        blastTime += Time.deltaTime;
 
     }
 
