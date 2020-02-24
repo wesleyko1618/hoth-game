@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     float x;
     float z;
     public float jumpHeight = 3f;
+    //public Rigidbody playerRb;
 
     public float speed = 12f;
     public float gravity = -9.8f;
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded;
     private void Start()
     {
+       // playerRb = GetComponent<Rigidbody>();
        // controller = gameObject.GetComponent<CharacterController>();
     }
 
@@ -55,4 +57,11 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
 
     }
+
+  
+    
+      
 }
+
+
+
