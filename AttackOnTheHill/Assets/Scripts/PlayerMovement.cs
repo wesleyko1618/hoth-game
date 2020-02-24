@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,11 +22,15 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
     public Vector3 currentAngle;
 
+    public float hitpoints = 3;
+    public TextMeshProUGUI gameOverScreen;
+
     bool isGrounded;
     private void Start()
     {
        // playerRb = GetComponent<Rigidbody>();
-       // controller = gameObject.GetComponent<CharacterController>();
+        controller = gameObject.GetComponent<CharacterController>();
+        // gameOverScreen = gameObject.GetComponent<TextMeshProUGUI>();
     }
 
 
@@ -55,6 +61,13 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+
+        if (hitpoints <= 0)
+        {
+            Debug.Log("here");
+            gameOverScreen.gameObject.SetActive(true);
+            controller.enabled = false;
+        }
 
     }
 

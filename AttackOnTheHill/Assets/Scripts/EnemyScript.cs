@@ -9,10 +9,11 @@ public class EnemyScript : MonoBehaviour
     public float distance;
     public float minDistance = 35;
     public float speed = 10f;
+    public PlayerMovement playerMove;
     private void Start()
     {
         player = GameObject.Find("PlayerController");
-        
+        playerMove = player.GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -29,5 +30,9 @@ public class EnemyScript : MonoBehaviour
             transform.LookAt(playerPos);
         }
 
+        if(distance < 1.2)
+        {
+            playerMove.hitpoints--;
+        }
     }
 }
